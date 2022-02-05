@@ -26,7 +26,7 @@ const CustomerDeviceInfo = () => {
             validationSchema={validate}>
             {
                 (formik) => <Form>
-
+<h1 className='text-center mt-2'>Device Info</h1>
                     <div className="d-flex align-items-center flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
                         <div className="col-12 col-sm-5 ">
                             <label htmlFor="exampleInputEmail1" className="form-label">Device Name</label>

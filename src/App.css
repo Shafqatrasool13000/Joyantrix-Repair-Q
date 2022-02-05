@@ -10,5 +10,11 @@
 }
 .error-text>span{
   color: red;
- 
+}
+h1{
+  font-weight: 700;
+}
+.nav-style li Link{
+  font-weight: 900;
+  
 }

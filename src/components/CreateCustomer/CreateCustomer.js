@@ -27,7 +27,7 @@ const CreateCustomer = () => {
             validationSchema={validate}>
             {
                 (formik) => <Form>
-                    
+                    <h1 className='text-center mt-2'>Create Your Account</h1>
                         <div className="d-flex align-items-center flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
                                 <div className="col-12 col-sm-5 ">
                                     <label htmlFor="exampleInputEmail1" className="form-label">First Name</label>
@@ -78,7 +78,7 @@ const CreateCustomer = () => {
                                         </div>
                                     <div className='error-text'>{formik.touched.email && formik.errors.email && <span className='error-inner-text'>{formik.errors.email}</span>}</div>
                                 </div>
-                                <button  className='  mt-3 px-5 btn btn-primary' type="submit" >Submit Info</button>
+                                <button  className='  mt-3 px-5 btn btn-primary' type="submit" >Submit </button>
                         </div>
                         
                    
