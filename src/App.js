@@ -9,6 +9,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import Login from './components/Login/Login';
 function App() {
   return (
     <>
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route exact path="/repair-info">
           <RepairInfo />
+        </Route>
+        <Route exact path="/login">
+          <Login />
         </Route>
       </Switch>
       <Footer/>
