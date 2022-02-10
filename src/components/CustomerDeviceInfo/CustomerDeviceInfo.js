@@ -2,9 +2,11 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 
 import * as Yup from 'yup'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { customerDeviceInfo } from '../utils/urls';
 
 const CustomerDeviceInfo = () => {
-
     const validate = Yup.object({
         deviceName: Yup.string().required('Device Name Required'), model: Yup.string().required('Model Number Required'), serialNumber: Yup.string().required('Serial Number Required'),
         password: Yup.string().required('Password Required'),
@@ -18,11 +20,21 @@ const CustomerDeviceInfo = () => {
             serialNumber: '',
             password: '',
 
-        }} onSubmit={(values) => {
+        }} onSubmit={async (values) => {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}${customerDeviceInfo}`,{
+                "typeOfRepair": "Screen Issue",
+                "estimatedCost": "12",
+                "appointmentTime": "3-12-2022",
+                "trackingType": "1",
+                "trackingNumber": "1",
+                "status": 1 
+            }).then((response)=>{
+               console.log(response.data)
 
-            alert(JSON.stringify(values, null, 2))
-        }
-        }
+            }).catch((error)=>console.log(error));
+                 alert(JSON.stringify(values, null, 2))
+             }
+             }
             validationSchema={validate}>
             {
                 (formik) => <Form>
@@ -69,7 +81,7 @@ const CustomerDeviceInfo = () => {
                             <div className='form-field' >
 
                                 <label htmlFor="exampleInputEmail1" className="form-label">Password</label>
-                                <input type="text" name='email' placeholder='Enter Password' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                <input type="text" name='password' placeholder='Enter Password' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     value={formik.values.password}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
@@ -77,6 +89,7 @@ const CustomerDeviceInfo = () => {
                             </div>
                             <div className='error-text'>{formik.touched.password && formik.errors.password && <span className='error-inner-text'>{formik.errors.password}</span>}</div>
                         </div>
+                        
                         <button className='  mt-3 px-5 btn btn-primary' type="submit" >Submit</button>
                     </div>
 

@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0 nav-style">
             <li className="nav-item me-5">
-              <Link className="nav-link active" aria-current="page" to="/">Create Account</Link>
+              <Link className="nav-link active" aria-current="page" to="/">Create Customer</Link>
             </li>
             <li className="nav-item me-5">
               <Link className="nav-link active" aria-current="page" to="/customer-device">Device Info</Link>
@@ -22,9 +22,10 @@ const Navbar = () => {
               <Link className="nav-link active" aria-current="page" to="/repair-info">Repair Info</Link>
             </li>
           </ul>
-          <Link to='/login'>
+              <Link to='/login'>
             <button className="btn btn-success me-2" type="submit">Login</button>
-          </Link>
+              </Link>
+          
 
         </div>
       </div>

@@ -3,6 +3,8 @@ import { Field, Form, Formik } from 'formik';
 import DateView from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import * as Yup from 'yup'
+import axios from 'axios';
+import { repairInfo } from '../utils/urls';
 
 const RepairInfo = () => {
 
@@ -43,11 +45,16 @@ const RepairInfo = () => {
             trackingNumber: '', 
             appointmentTime: ''
 
-        }} onSubmit={(values) => {
+        }} onSubmit={async (values) => {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}${repairInfo}`,values).then((response)=>{
+               console.log(response)
 
-            alert(JSON.stringify(values, null, 2))
-        }
-        }
+                console.log(response)
+            }).catch((error)=>console.log(error));
+                 alert(JSON.stringify(values, null, 2))
+             }
+             }
+        
             validationSchema={validate}>
             {
                 (formik) => <Form>

@@ -10,7 +10,9 @@ import {
   Route
 } from "react-router-dom";
 import Login from './components/Login/Login';
+import Table from './components/tables/Table';
 function App() {
+  console.log(JSON.parse(window.localStorage.getItem('user')))
   return (
     <>
       <Navbar />
@@ -18,17 +20,18 @@ function App() {
         <Route exact path="/">
           <CreateCustomer />
         </Route>
-        <Route exact path="/customer-device">
+        <Route  path="/customer-device">
           <CustomerDeviceInfo />
         </Route>
-        <Route exact path="/repair-info">
+        <Route  path="/repair-info">
           <RepairInfo />
         </Route>
-        <Route exact path="/login">
+        <Route  path="/login">
           <Login />
         </Route>
       </Switch>
       <Footer/>
+      <Table/>
     </>
   );
 }

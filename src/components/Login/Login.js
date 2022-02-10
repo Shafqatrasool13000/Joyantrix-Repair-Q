@@ -2,6 +2,8 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 
 import * as Yup from 'yup'
+import axios from 'axios';
+import { login } from '../utils/urls';
 
 const Login = () => {
 
@@ -15,11 +17,15 @@ const Login = () => {
             email: '',
             password: ''
 
-        }} onSubmit={(values) => {
-            
-            alert(JSON.stringify(values, null, 2))
-        }
-        }
+        }} onSubmit={async (values) => {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}${login}`,values).then((response)=>{
+               window.localStorage.setItem('user',JSON.stringify(response.data));
+
+                console.log(response)
+            }).catch((error)=>console.log(error));
+                 alert(JSON.stringify(values, null, 2))
+             }
+             }
             validationSchema={validate}>
             {
                 (formik) => <Form>
@@ -43,7 +49,7 @@ const Login = () => {
                                 <div className='form-field' >
 
                                     <label htmlFor="exampleInputEmail1" className="form-label">Password</label>
-                                    <input type="password" name='password' placeholder='Phone Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    <input type="password" name='password' placeholder='Password' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                         value={formik.values.password}
                                         onBlur={formik.handleBlur}
                                         onChange={formik.handleChange}
