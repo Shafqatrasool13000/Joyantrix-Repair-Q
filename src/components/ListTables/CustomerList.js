@@ -5,7 +5,6 @@ import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader'
 import { FaTrashAlt,FaEdit } from "react-icons/fa";
 import Modal from 'react-modal'
-import CreateCustomer from '../CreateCustomer/CreateCustomer';
 import EditCustomer from '../EditCustomer/EditCustomer';
 import { useHistory } from 'react-router-dom';
 
@@ -14,6 +13,7 @@ const CustomerList = () => {
     const [customersList, setCustomersList] = useState(null)
     const [editableCustomer, setEditableCustomer] = useState()
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [update,setUpdate]=useState(false);
 
     useEffect(() => {
         setIsLoading(true)
@@ -26,7 +26,7 @@ const CustomerList = () => {
         });
 
 
-    }, []);
+    }, [update]);
 
     const history=useHistory();
     const moveToCustomersList=()=>{
@@ -40,23 +40,24 @@ const CustomerList = () => {
     }
     const removeModal=()=>{
         setIsModalOpen(false)
+        setUpdate((prev)=>!prev)
+
     }
     // Delete Handler 
     const deleteHandler = (_id) => {
         setIsLoading(true)
         axios.delete(`${process.env.REACT_APP_BASE_URL}${deleteCustomer}/${_id}`).then((response) => {
-            console.log(response)
             setIsLoading(false)
             sweetalert('Customer Deleted Sucessful', 'success', moveToCustomersList)
+            setUpdate((prev)=>!prev)
         }).catch((error) => {
             setIsLoading(false)
             sweetalert('Something Went Wrong', 'error')
         });
     }
-
     return <div className='container form mt-3'>
         {isLoading && <Loader />}
-        <Modal shouldCloseOnEsc isOpen={isModalOpen}  shouldCloseOnOverlayClick onRequestClose={()=>setIsModalOpen(false)} style={
+        <Modal appElement={document.getElementById('app')} shouldCloseOnEsc isOpen={isModalOpen}  shouldCloseOnOverlayClick onRequestClose={()=>setIsModalOpen(false)} style={
              {overlay:{backgroundColor:"grey"},
             content:{color:"orange"}}      
          }>
@@ -93,8 +94,6 @@ const CustomerList = () => {
 
             </tbody>
         </table>
-
-
     </div>;
 };
 

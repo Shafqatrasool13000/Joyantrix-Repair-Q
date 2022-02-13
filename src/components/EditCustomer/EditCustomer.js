@@ -7,12 +7,12 @@ import { editableCustomer } from '../utils/urls';
 import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader'
 
-const EditCustomer = ({customerInfo,removeModal}) => {
+const EditCustomer = ({ customerInfo, removeModal }) => {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory();
 
-    const {email,firstName,lastName,_id,phone}=customerInfo
-    console.log(email,firstName,lastName,_id,phone)
+    const { email, firstName, lastName, phone } = customerInfo
+    console.log(phone, "Phone Number Customer")
     const moveToCustomersTable = () => {
         history.push('/customers-table');
     }
@@ -20,29 +20,29 @@ const EditCustomer = ({customerInfo,removeModal}) => {
         firstName: Yup.string().max(15, 'Must less than 15').required('First Name Required'), lastName: Yup.string().max(15, 'Must less than 15').required('Last Name Required'), phone: Yup.string().required('Phone Required'),
         email: Yup.string().email('Invalid email').required('Email Required'),
     })
-   
+
     return (
         <Formik validateOnMount initialValues={{
             firstName: firstName,
             lastName: lastName,
             phone: phone,
-            email:email
+            email: email
         }} onSubmit={(values) => {
             setIsLoading(true)
             axios.post(`${process.env.REACT_APP_BASE_URL}${editableCustomer}`, values).then((response) => {
                 setIsLoading(false)
                 sweetalert('Customer Edit Sucessful', 'success', moveToCustomersTable)
                 removeModal()
-            }).catch((error) =>{
+            }).catch((error) => {
                 setIsLoading(false)
                 sweetalert('Something Went Wrong', 'error')
-            } );
+            });
         }
         }
             validationSchema={validate}>
             {
                 (formik) => <Form className='form'>
-                   {isLoading&&<Loader/>}
+                    {isLoading && <Loader />}
                     <h1 className='text-center mt-2'>Edit  Customer</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
                         <div className="col-12 col-sm-5 ">
@@ -94,7 +94,10 @@ const EditCustomer = ({customerInfo,removeModal}) => {
                             </div>
                             <div className='error-text'>{formik.touched.email && formik.errors.email && <span className='error-inner-text'>{formik.errors.email}</span>}</div>
                         </div>
-                        <button disabled={isLoading?true:false}  className='mt-3 px-5 btn btn-primary' type="submit" >Add </button>
+                        <div className='d-flex mx-3'>
+                            <button disabled={isLoading ? true : false} className='mt-3 px-5 btn mx-5  btn-primary' type="submit" >Add</button>
+                            <button disabled={isLoading ? true : false} className='mt-3 px-5 btn btn-primary' onClick={() => removeModal()}  >Cancel</button>
+                        </div>
                     </div>
 
                 </Form>

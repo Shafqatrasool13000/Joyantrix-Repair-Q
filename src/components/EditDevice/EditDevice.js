@@ -3,99 +3,105 @@ import { useHistory } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import axios from 'axios'
 import * as Yup from 'yup'
-import { editableCustomer } from '../utils/urls';
 import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader'
+import { deviceEdit } from '../utils/urls';
 
 const EditDevice = ({deviceInfo,removeModal}) => {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory();
-
-    const {email,firstName,lastName,_id,phone}=deviceInfo
-    console.log(email,firstName,lastName,_id,phone)
-    const moveToCustomersTable = () => {
-        history.push('/customers-table');
+    const {deviceName,model,serialNumber,password}=deviceInfo
+    const moveToDeviceList = () => {
+        history.push('/device-table');
     }
     const validate = Yup.object({
-        firstName: Yup.string().max(15, 'Must less than 15').required('First Name Required'), lastName: Yup.string().max(15, 'Must less than 15').required('Last Name Required'), phone: Yup.string().required('Phone Required'),
-        email: Yup.string().email('Invalid email').required('Email Required'),
+        deviceName: Yup.string().required('Device Name Required'), model: Yup.string().required('Model Number Required'), serialNumber: Yup.string().required('Serial Number Required'),
+        password: Yup.string().required('Password Required'),
     })
    
     return (
         <Formik validateOnMount initialValues={{
-            firstName: firstName,
-            lastName: lastName,
-            phone: phone,
-            email:email
-        }} onSubmit={(values) => {
+            deviceName: deviceName,
+            model: model,
+            serialNumber:serialNumber,
+            password: password,
+
+        }} onSubmit={ (values) => {
             setIsLoading(true)
-            axios.post(`${process.env.REACT_APP_BASE_URL}${editableCustomer}`, values).then((response) => {
+             axios.post(`${process.env.REACT_APP_BASE_URL}${deviceEdit}`, values).then((response) => {
                 setIsLoading(false)
-                sweetalert('Device Edited Sucessful', 'success', moveToCustomersTable)
+                sweetalert('Device Edit Sucessful', 'success', moveToDeviceList)
                 removeModal()
             }).catch((error) =>{
                 setIsLoading(false)
                 sweetalert('Something Went Wrong', 'error')
-            } );
+            });
+            
         }
         }
             validationSchema={validate}>
             {
                 (formik) => <Form className='form'>
-                   {isLoading&&<Loader/>}
-                    <h1 className='text-center mt-2'>Edit  Customer</h1>
+                    <h1 className='text-center mt-2'>Device Info</h1>
+                    {isLoading&&<Loader/>}
                     <div className="d-flex align-items-center overlay flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
+
                         <div className="col-12 col-sm-5 ">
-                            <label htmlFor="exampleInputEmail1" className="form-label">First Name</label>
+                            <label htmlFor="exampleInputEmail1" className="form-label">Device Name</label>
                             <div className='form-field' >
-                                <input type="text" name='firstName' className="form-control"
-                                    placeholder='First Name' id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value={formik.values.firstName}
+                                <input type="text" name='deviceName' className="form-control"
+                                    placeholder='Device Name' id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    value={formik.values.deviceName}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
                                 />
                             </div>
-                            <div className='error-text'>{formik.touched.firstName && formik.errors.firstName && <span className='error-inner-text'>{formik.errors.firstName}</span>}</div>
+                            <div className='error-text'>{formik.touched.deviceName && formik.errors.deviceName && <span className='error-inner-text'>{formik.errors.deviceName}</span>}</div>
                         </div>
                         <div className="col-12 col-sm-5">
                             <div className='form-field' >
 
-                                <label htmlFor="exampleInputEmail1" className="form-label">Last Name</label>
-                                <input type="text" name='lastName' placeholder='Last Name' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value={formik.values.lastName}
+                                <label htmlFor="exampleInputEmail1" className="form-label">Model</label>
+                                <input type="text" name='model' placeholder='Model Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    value={formik.values.model}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
                                 />
                             </div>
-                            <div className='error-text'>{formik.touched.lastName && formik.errors.lastName && <span className='error-inner-text'>{formik.errors.lastName}</span>}</div>
+                            <div className='error-text'>{formik.touched.model && formik.errors.model && <span className='error-inner-text'>{formik.errors.model}</span>}</div>
 
                         </div>
                         <div className="col-12 col-sm-5">
                             <div className='form-field' >
 
-                                <label htmlFor="exampleInputEmail1" className="form-label">Phone Number</label>
-                                <input type="number" name='phone' placeholder='Phone Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value={formik.values.phone}
+                                <label htmlFor="exampleInputEmail1" className="form-label">Serial Number</label>
+                                <input type="number" name='serialNumber' placeholder='Enter Serial Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    value={formik.values.serialNumber}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
                                 />
                             </div>
-                            <div className='error-text'>{formik.touched.phone && formik.errors.phone && <span className='error-inner-text'>{formik.errors.phone}</span>}</div>
+                            <div className='error-text'>{formik.touched.serialNumber && formik.errors.serialNumber && <span className='error-inner-text'>{formik.errors.serialNumber}</span>}</div>
                         </div>
                         <div className="col-12 col-sm-5">
                             <div className='form-field' >
 
-                                <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-                                <input type="text" name='email' placeholder='Enter Email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value={formik.values.email}
+                                <label htmlFor="exampleInputEmail1" className="form-label">Password</label>
+                                <input type="text" name='password' placeholder='Enter Password' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    value={formik.values.password}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
                                 />
                             </div>
-                            <div className='error-text'>{formik.touched.email && formik.errors.email && <span className='error-inner-text'>{formik.errors.email}</span>}</div>
+                            <div className='error-text'>{formik.touched.password && formik.errors.password && <span className='error-inner-text'>{formik.errors.password}</span>}</div>
                         </div>
-                        <button disabled={isLoading?true:false}  className='mt-3 px-5 btn btn-primary' type="submit" >Add </button>
+                        <div className='d-flex mx-3'>
+
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn mx-5  btn-primary' type="submit" >Add</button>
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-danger' onClick={()=>removeModal()}  >Cancel</button>
+                        </div>
                     </div>
+
 
                 </Form>
             }

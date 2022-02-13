@@ -22,7 +22,6 @@ function App() {
   const location=useLocation()
   useEffect(() => {
     JSON.parse(window.localStorage.getItem('user')) !== null ? history.push('/create-customer') : history.push('/homepage');
-  console.log(JSON.parse(window.localStorage.getItem('user')))  
   }, [])
 
   return (

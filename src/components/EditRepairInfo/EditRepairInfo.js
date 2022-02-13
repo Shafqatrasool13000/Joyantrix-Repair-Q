@@ -11,7 +11,6 @@ import DateView from 'react-datepicker'
 
 
 const EditRepairInfo = ({repairInfo,removeModal}) => {
-    console.log(repairInfo,"repair Info")
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory();
 

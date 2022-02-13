@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { customerList, deleteCustomer, repairInfo, repairInfoDelete, repairInfoTable } from '../utils/urls';
+import {repairInfoDelete, repairInfoTable } from '../utils/urls';
 import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader'
 import { FaTrashAlt,FaEdit } from "react-icons/fa";
 import Modal from 'react-modal'
-import EditCustomer from '../EditCustomer/EditCustomer';
 import { useHistory } from 'react-router-dom';
 import EditRepairInfo from '../EditRepairInfo/EditRepairInfo';
 
@@ -14,7 +13,7 @@ const RepairInfoList = () => {
     const [repairInfoList, setRepairInfoList] = useState(null)
     const [editableRepairInfo, setEditableRepairInfo] = useState()
     const [isModalOpen, setIsModalOpen] = useState(false)
-
+    const [update,setUpdate]=useState(false);
     useEffect(() => {
         setIsLoading(true)
         axios.get(`${process.env.REACT_APP_BASE_URL}${repairInfoTable}`).then((response) => {
@@ -26,7 +25,7 @@ const RepairInfoList = () => {
         });
 
 
-    }, []);
+    }, [update]);
 
     const history=useHistory();
     const moveToRepairInfo=()=>{
@@ -40,14 +39,15 @@ const RepairInfoList = () => {
     }
     const removeModal=()=>{
         setIsModalOpen(false)
+        setUpdate((prev)=>!prev)
     }
     // Delete Handler 
     const deleteHandler = (_id) => {
         setIsLoading(true)
         axios.delete(`${process.env.REACT_APP_BASE_URL}${repairInfoDelete}/${_id}`).then((response) => {
-            console.log(response)
             setIsLoading(false)
             sweetalert('Repair Info Deleted Sucessful', 'success', moveToRepairInfo)
+            setUpdate((prev)=>!prev)
         }).catch((error) => {
             setIsLoading(false)
             sweetalert('Something Went Wrong', 'error')
@@ -55,7 +55,7 @@ const RepairInfoList = () => {
     }
 
     return <div className='container form mt-3'>
-        {isLoading && <Loader />}
+      
         <Modal shouldCloseOnEsc isOpen={isModalOpen}  shouldCloseOnOverlayClick onRequestClose={()=>setIsModalOpen(false)} appElement={document.getElementById('app')} style={
              {overlay:{backgroundColor:"grey"},
             content:{color:"orange"}}      
@@ -65,6 +65,7 @@ const RepairInfoList = () => {
              </div>
          </Modal>
         <table className="table overlay">
+        {isLoading && <Loader />}
             <thead className="thead-dark">
                 <tr>
                     <th scope="col">#Sr.</th>

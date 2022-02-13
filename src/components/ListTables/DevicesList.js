@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { customerList, deleteCustomer, deviceDelete, deviceList } from '../utils/urls';
+import {  deviceDelete, deviceList } from '../utils/urls';
 import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader'
 import { FaTrashAlt,FaEdit } from "react-icons/fa";
 import Modal from 'react-modal'
-import CreateCustomer from '../CreateCustomer/CreateCustomer';
-import EditCustomer from '../EditCustomer/EditCustomer';
 import { useHistory } from 'react-router-dom';
+import EditDevice from '../EditDevice/EditDevice';
 
 const DevicesList = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [devicesList, setDevicesList] = useState(null)
     const [editableDevice, setEditableDevice] = useState()
     const [isModalOpen, setIsModalOpen] = useState(false)
-     console.log(deviceList)
+    const [update,setUpdate]=useState(false);
     useEffect(() => {
         setIsLoading(true)
         axios.get(`${process.env.REACT_APP_BASE_URL}${deviceList}`).then((response) => {
@@ -27,7 +26,7 @@ const DevicesList = () => {
         });
 
 
-    }, []);
+    }, [update]);
 
     const history=useHistory();
     const moveToDevicesList=()=>{
@@ -41,14 +40,15 @@ const DevicesList = () => {
     }
     const removeModal=()=>{
         setIsModalOpen(false)
+        setUpdate((prev)=>!prev)
     }
     // Delete Handler 
     const deleteHandler = (_id) => {
         setIsLoading(true)
         axios.delete(`${process.env.REACT_APP_BASE_URL}${deviceDelete}/${_id}`).then((response) => {
-            console.log(response)
             setIsLoading(false)
             sweetalert('Device Deleted Sucessful', 'success', moveToDevicesList)
+            setUpdate((prev)=>!prev)
         }).catch((error) => {
             setIsLoading(false)
             sweetalert('Something Went Wrong', 'error')
@@ -57,13 +57,13 @@ const DevicesList = () => {
 
     return <div className='container form mt-3'>
         {isLoading && <Loader />}
-        <Modal shouldCloseOnEsc isOpen={isModalOpen}  shouldCloseOnOverlayClick onRequestClose={()=>setIsModalOpen(false)} style={
+        <Modal appElement={document.getElementById('app')} shouldCloseOnEsc isOpen={isModalOpen}  shouldCloseOnOverlayClick onRequestClose={()=>setIsModalOpen(false)} style={
              {overlay:{backgroundColor:"grey"},
             content:{color:"orange"}}      
          }>
              <div className='d-flex flex-column align-items-center'>
 
-             <EditCustomer deviceInfo={editableDevice} removeModal={removeModal}/>
+             <EditDevice deviceInfo={editableDevice} removeModal={removeModal}/>
              
              </div>
          </Modal>
@@ -79,7 +79,7 @@ const DevicesList = () => {
             <tbody>
                 {
                     devicesList && devicesList.map((device, index) => {
-                        const { deviceName, model, serialNumber,__v,_id } = device
+                        const { deviceName, model, serialNumber,_id } = device
                         return (
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
