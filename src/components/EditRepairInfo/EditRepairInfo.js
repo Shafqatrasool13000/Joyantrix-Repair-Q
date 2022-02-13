@@ -1,40 +1,30 @@
-import React,{useState} from 'react';
-import { Field, Form, Formik } from 'formik';
-import DateView from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import * as Yup from 'yup'
-import axios from 'axios';
-import { repairInfo } from '../utils/urls';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Form, Formik } from 'formik';
+import axios from 'axios'
+import * as Yup from 'yup'
+import { editableCustomer } from '../utils/urls';
 import sweetalert from '../../SweetAlert';
-import Loader from '../Loader/Loader';
+import Loader from '../Loader/Loader'
+import { Field } from 'formik';
+import DateView from 'react-datepicker'
 
 
-const RepairInfo = () => {
+const EditRepairInfo = ({repairInfo,removeModal}) => {
+    console.log(repairInfo,"repair Info")
     const [isLoading, setIsLoading] = useState(false)
-
     const history = useHistory();
 
-    const moveToRepairInfoList = () => {
-        history.push('/repair-info-table');
-    }
+    const {typeOfRepair,trackingNumber,trackingType,appointmentTime,status,estimatedCost}=repairInfo
     const dropdownOptions = [
         { key: 'Select an option', value: '' },
         { key: 'New Ordered', value: '1' },
         { key: 'Transit', value: '2' },
         { key: 'Delivered', value: '3' }
     ]
-    // const radioOptions = [
-    //     { key: 'Walk in', value: 'rOption1' },
-    //     { key: 'Special Order', value: 'rOption2' },
-    //     { key: 'Diagnostic', value: 'rOption3' }
-    // ]
-    // const checkboxOptions = [
-    //     { key: 'Option 1', value: 'cOption1' },
-    //     { key: 'Option 2', value: 'cOption2' },
-    //     { key: 'Option 3', value: 'cOption3' }
-    // ]
-
+    const moveToCustomersTable = () => {
+        history.push('/repair-info-table');
+    }
     const validate = Yup.object({
         typeOfRepair: Yup.string().required('Type of Repair Required'),
         estimatedCost: Yup.string().required('Estimated Cost Required'),
@@ -45,37 +35,30 @@ const RepairInfo = () => {
         status: Yup.string().required('Status Required'),
         trackingNumber: Yup.string().required('Tracking Number Required'),
     })
+   
     return (
-
         <Formik validateOnMount initialValues={{
-            typeOfRepair: '',
-            estimatedCost: '',
-            appointmentTime: '',
-            trackingType: '',
-            status: '',
-            trackingNumber: ''
-
+            typeOfRepair:typeOfRepair,
+            estimatedCost:estimatedCost,
+            appointmentTime:'',
+            trackingType:trackingType,status:status,trackingNumber:trackingNumber
         }} onSubmit={(values) => {
             setIsLoading(true)
-            axios.post(`${process.env.REACT_APP_BASE_URL}${repairInfo}`,
-                values
-            ).then((response) => {
+            axios.post(`${process.env.REACT_APP_BASE_URL}${editableCustomer}`, values).then((response) => {
                 setIsLoading(false)
-                sweetalert('Repair info added Sucessfull', 'success', moveToRepairInfoList)
-               
-            }).catch((error) => {
+                sweetalert('Device Edited Sucessful', 'success', moveToCustomersTable)
+                removeModal()
+            }).catch((error) =>{
                 setIsLoading(false)
                 sweetalert('Something Went Wrong', 'error')
-            });
-            
+            } );
         }
         }
-
             validationSchema={validate}>
             {
                 (formik) => <Form className='form'>
-                    {isLoading&&<Loader/>}
-                    <h1 className='text-center mt-2'>Repair Info</h1>
+                   {isLoading&&<Loader/>}
+                   <h1 className='text-center mt-2'>Repair Info</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3 justify-content-center gap-3 create-customer-main mx-2">
                         <div className="col-12 col-sm-5  ">
                             <label htmlFor="exampleInputEmail1" className="form-label">Type of Repair</label>
@@ -162,38 +145,6 @@ const RepairInfo = () => {
                         <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary' type="submit" >Submit</button>
                     </div>
 
-
-
-                    {/* Select */}
-
-
-                    {/* <div className='col-12 col-sm-5 '>
-                        <label>Select Option</label>
-                        <Field name='selectOption'>
-                            {({ field }) => {
-                                return checkboxOptions.map(option => {
-                                    return (
-                                        <React.Fragment key={option.key}>
-                                            <input
-                                                type='checkbox'
-                                                id={option.value}
-                                                {...field}
-                                                value={option.value}
-                                                checked={field.value.includes(option.value)}
-                                            />
-                                            <label htmlFor={option.value}>{option.key}</label>
-                                        </React.Fragment>
-                                    )
-                                })
-                            }}
-                        </Field>
-                        <div className='error-text'>{formik.touched.email && formik.errors.email && <span className='error-inner-text'>{formik.errors.email}</span>}</div>
-                    </div> */}
-
-
-
-
-
                 </Form>
             }
 
@@ -203,4 +154,4 @@ const RepairInfo = () => {
 
 };
 
-export default RepairInfo;
+export default EditRepairInfo;

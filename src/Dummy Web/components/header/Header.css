@@ -1,0 +1,171 @@
+#hero-main {
+  font-family: Roboto;
+  font-style: normal;
+  background-image: url("../../assets/banner.svg");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+  color: rgba(255, 255, 255, 1);
+}
+#hero-main .hero-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 92.78px;
+}
+
+.hero-title {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 68px;
+  letter-spacing: 0em;
+  height: 174px;
+  width: 60%;
+}
+
+.hero-sub {
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  margin-top: 25px;
+  margin-bottom: 33.54px;
+  height: 66px;
+  width: 40%;
+}
+
+.hero-btn-main {
+  display: flex;
+  align-items: center;
+  margin-top: 26px;
+  
+}
+.hero-btn-touch {
+  height: 34px;
+  width: 145.20513916015625px;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0em;
+  background: #06bf97;
+  color: #ffffff;
+  font-family: Open Sans;
+  font-weight: 700;
+  border-radius: 3px;
+  font-style: normal;
+  text-align: center;
+  margin-right: 14.7px;
+  border: none;
+}
+.hero-btn-watch {
+  height: 34px;
+  width: 126px;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0em;
+  color: #ffffff;
+  font-family: Open Sans;
+  font-weight: 700;
+  border-radius: 3px;
+  font-style: normal;
+  text-align: center;
+  border: none;
+}
+
+@media only screen and (max-width: 991px) {
+  .hero-title {
+    font-size: 40px;
+    line-height: 45px;
+   height: 140px;
+    width: 80%;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 18px;
+    height: 45px;
+    width: 70%;
+  }
+
+  .hero-btn-main {  
+    align-items: center;
+    margin-top: 26px;
+  }
+  .hero-btn-touch {
+    height: 34px;
+    width: 145px;
+    font-size: 14px;
+    line-height: 19px;
+    margin-right: 14.7px;
+  }
+  .hero-btn-watch {
+    height: 34px;
+    width: 126px;
+    font-size: 14px;
+    line-height: 19px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #hero-main .hero-container {
+    justify-content: center;
+    padding-left: 20px;
+  }
+
+  .hero-title {
+    height: 80px;
+    width: 100%;
+    font-size: 23px;
+    line-height: 38px;
+    margin-bottom: 25.54px;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    line-height: 22px;
+    margin-top: 18px;
+    height: 35px;
+    width: 100%;
+  
+  }
+
+  .hero-btn-main {
+    
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+  .hero-btn-touch {
+    height: 34px;
+    width: 145px;
+    font-size: 10px;
+    line-height: 19px;
+    letter-spacing: 0em;
+    background: #06bf97;
+    color: #ffffff;
+    font-family: Open Sans;
+    font-weight: 700;
+    border-radius: 3px;
+    font-style: normal;
+    text-align: center;
+    margin-right: 14.7px;
+    outline: none;
+    margin-bottom: 20px;
+  }
+  .hero-btn-watch {
+    height: 34px;
+    width: 126px;
+
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: #ffffff;
+    font-family: Open Sans;
+    font-weight: 700;
+    border-radius: 3px;
+    font-style: normal;
+    text-align: center;
+  }
+}

@@ -1,39 +1,79 @@
 import './App.css';
 import CreateCustomer from './components/CreateCustomer/CreateCustomer';
-import CustomerDeviceInfo from './components/CustomerDeviceInfo/CustomerDeviceInfo';
-import Navbar from './components/Navbar/Navbar';
+import CustomerDeviceInfo from './components/DeviceInfo/DeviceInfo';
 import RepairInfo from './components/RepairInfo/RepairInfo';
 import Footer from './components/Footer/Footer';
 import {
-
   Switch,
   Route
 } from "react-router-dom";
-import Login from './components/Login/Login';
-import Table from './components/tables/Table';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import DummyHomepage from './Dummy Web/DummyHomepage'
+import { useLocation } from 'react-router-dom';
+import Loginpage from './components/Login/LogingInPage';
+import CustomerList from './components/ListTables/CustomerList';
+import DevicesList from './components/ListTables/DevicesList';
+import RepairInfoList from './components/ListTables/RepairInfoList';
+
 function App() {
-  console.log(JSON.parse(window.localStorage.getItem('user')))
+  const history = useHistory();
+  const location=useLocation()
+  useEffect(() => {
+    JSON.parse(window.localStorage.getItem('user')) !== null ? history.push('/create-customer') : history.push('/homepage');
+  console.log(JSON.parse(window.localStorage.getItem('user')))  
+  }, [])
+
   return (
     <>
-      <Navbar />
+       {location.pathname==='/homepage'||location.pathname==='/login'?null
+      :<Navbar />
+      }
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/login">
+          <Loginpage />
+        </Route>
+        <Route path="/create-customer">
           <CreateCustomer />
         </Route>
-        <Route  path="/customer-device">
+        <Route path="/customers-table">
+          <CustomerList />
+        </Route>
+        <Route path="/device-table">
+          <DevicesList />
+        </Route>
+        <Route path="/repair-info-table">
+          <RepairInfoList />
+        </Route>
+        <Route path="/device-info">
           <CustomerDeviceInfo />
         </Route>
-        <Route  path="/repair-info">
+        <Route path="/repair-info">
           <RepairInfo />
         </Route>
-        <Route  path="/login">
-          <Login />
+        <Route path="/homepage">
+          <DummyHomepage />
         </Route>
       </Switch>
-      <Footer/>
-      <Table/>
+      {location.pathname==='/homepage'||location.pathname==='/login'?null
+      :<Footer />
+    }
+  
+      
     </>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+

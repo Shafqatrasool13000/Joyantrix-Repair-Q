@@ -1,17 +1,24 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Form, Formik } from 'formik';
-
 import * as Yup from 'yup'
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { customerDeviceInfo } from '../utils/urls';
+import { DeviceInfo } from '../utils/urls';
+import sweetalert from '../../SweetAlert';
+import { useHistory } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 const CustomerDeviceInfo = () => {
+    const history=useHistory()
+    const [isLoading, setIsLoading] = useState(false)
+
     const validate = Yup.object({
         deviceName: Yup.string().required('Device Name Required'), model: Yup.string().required('Model Number Required'), serialNumber: Yup.string().required('Serial Number Required'),
         password: Yup.string().required('Password Required'),
 
     })
+    const moveToDeviceInfo=()=>{
+        history.push('/device-table')
+    }
     return (
 
         <Formik validateOnMount initialValues={{
@@ -20,26 +27,26 @@ const CustomerDeviceInfo = () => {
             serialNumber: '',
             password: '',
 
-        }} onSubmit={async (values) => {
-            await axios.post(`${process.env.REACT_APP_BASE_URL}${customerDeviceInfo}`,{
-                "typeOfRepair": "Screen Issue",
-                "estimatedCost": "12",
-                "appointmentTime": "3-12-2022",
-                "trackingType": "1",
-                "trackingNumber": "1",
-                "status": 1 
-            }).then((response)=>{
-               console.log(response.data)
+        }} onSubmit={ (values) => {
+            setIsLoading(true)
+             axios.post(`${process.env.REACT_APP_BASE_URL}${DeviceInfo}`, values).then((response) => {
+                setIsLoading(false)
+                sweetalert('Device Info adeed Sucessful', 'success', moveToDeviceInfo)
 
-            }).catch((error)=>console.log(error));
-                 alert(JSON.stringify(values, null, 2))
-             }
-             }
+            }).catch((error) =>{
+                setIsLoading(false)
+                sweetalert('Something Went Wrong', 'error')
+            });
+            
+        }
+        }
             validationSchema={validate}>
             {
-                (formik) => <Form>
-<h1 className='text-center mt-2'>Device Info</h1>
-                    <div className="d-flex align-items-center flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
+                (formik) => <Form className='form'>
+                    {isLoading&&<Loader/>}
+                    <h1 className='text-center mt-2'>Device Info</h1>
+                    <div className="d-flex align-items-center overlay flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
+
                         <div className="col-12 col-sm-5 ">
                             <label htmlFor="exampleInputEmail1" className="form-label">Device Name</label>
                             <div className='form-field' >
@@ -89,8 +96,8 @@ const CustomerDeviceInfo = () => {
                             </div>
                             <div className='error-text'>{formik.touched.password && formik.errors.password && <span className='error-inner-text'>{formik.errors.password}</span>}</div>
                         </div>
-                        
-                        <button className='  mt-3 px-5 btn btn-primary' type="submit" >Submit</button>
+
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary' type="submit" >Submit</button>
                     </div>
 
 
