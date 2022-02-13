@@ -10,11 +10,11 @@ import { Field } from 'formik';
 import DateView from 'react-datepicker'
 
 
-const EditRepairInfo = ({repairInfo,removeModal}) => {
+const EditRepairInfo = ({ repairInfo, removeModal }) => {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory();
 
-    const {typeOfRepair,trackingNumber,trackingType,appointmentTime,status,estimatedCost}=repairInfo
+    const { typeOfRepair, trackingNumber, trackingType, appointmentTime, status, estimatedCost } = repairInfo
     const dropdownOptions = [
         { key: 'Select an option', value: '' },
         { key: 'New Ordered', value: '1' },
@@ -34,30 +34,30 @@ const EditRepairInfo = ({repairInfo,removeModal}) => {
         status: Yup.string().required('Status Required'),
         trackingNumber: Yup.string().required('Tracking Number Required'),
     })
-   
+
     return (
         <Formik validateOnMount initialValues={{
-            typeOfRepair:typeOfRepair,
-            estimatedCost:estimatedCost,
-            appointmentTime:'',
-            trackingType:trackingType,status:status,trackingNumber:trackingNumber
+            typeOfRepair: typeOfRepair,
+            estimatedCost: estimatedCost,
+            appointmentTime: '',
+            trackingType: trackingType, status: status, trackingNumber: trackingNumber
         }} onSubmit={(values) => {
             setIsLoading(true)
             axios.post(`${process.env.REACT_APP_BASE_URL}${editableCustomer}`, values).then((response) => {
                 setIsLoading(false)
                 sweetalert('Device Edited Sucessful', 'success', moveToCustomersTable)
                 removeModal()
-            }).catch((error) =>{
+            }).catch((error) => {
                 setIsLoading(false)
                 sweetalert('Something Went Wrong', 'error')
-            } );
+            });
         }
         }
             validationSchema={validate}>
             {
                 (formik) => <Form className='form'>
-                   {isLoading&&<Loader/>}
-                   <h1 className='text-center mt-2'>Repair Info</h1>
+                    {isLoading && <Loader />}
+                    <h1 className='text-center mt-2'>Repair Info</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3 justify-content-center gap-3 create-customer-main mx-2">
                         <div className="col-12 col-sm-5  ">
                             <label htmlFor="exampleInputEmail1" className="form-label">Type of Repair</label>
@@ -141,7 +141,11 @@ const EditRepairInfo = ({repairInfo,removeModal}) => {
 
                         </div>
 
-                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary' type="submit" >Submit</button>
+                        <div className='d-flex mx-3'>
+
+                            <button disabled={isLoading ? true : false} className='mt-3 px-5 btn mx-5  btn-primary' type="submit" >Add</button>
+                            <button disabled={isLoading ? true : false} className='mt-3 px-5 btn btn-primary' onClick={() => removeModal()}  >Cancel</button>
+                        </div>
                     </div>
 
                 </Form>
