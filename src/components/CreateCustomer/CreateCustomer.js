@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import axios from 'axios'
 import * as Yup from 'yup'
@@ -90,7 +90,14 @@ const CreateCustomer = () => {
                             </div>
                             <div className='error-text'>{formik.touched.email && formik.errors.email && <span className='error-inner-text'>{formik.errors.email}</span>}</div>
                         </div>
-                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary' type="submit" >Submit </button>
+                        <div className="d-flex ">
+
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-success me-5' type="submit" >Submit </button>
+                            
+                            <Link to='/customers-table'>
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary ms-5'  >Cancel </button>
+                        </Link>
+                        </div>
                     </div>
 
                 </Form>

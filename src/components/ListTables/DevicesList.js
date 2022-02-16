@@ -5,7 +5,7 @@ import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader'
 import { FaTrashAlt,FaEdit } from "react-icons/fa";
 import Modal from 'react-modal'
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import EditDevice from '../EditDevice/EditDevice';
 
 const DevicesList = () => {
@@ -67,6 +67,12 @@ const DevicesList = () => {
              
              </div>
          </Modal>
+         <div className='text-end'>
+         <Link to='/device-info'>
+         <button className="btn btn-success">Add Device</button>
+
+         </Link>
+         </div>
         <table className="table overlay">
             <thead className="thead-dark">
                 <tr>

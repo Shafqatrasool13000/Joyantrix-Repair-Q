@@ -18,7 +18,7 @@ const Login = () => {
 
     })
     const moveToCreateCustomer = () => {
-        history.push('/create-customer')
+        history.push('/customers-table')
     }
     return (
 
@@ -31,7 +31,7 @@ const Login = () => {
             await axios.post(`${process.env.REACT_APP_BASE_URL}${login}`, values).then((response) => {
                 setIsLoading(false)
                 window.localStorage.setItem('user',JSON.stringify(response.data));
-                sweetalert('Customer Create Sucessful', 'success', moveToCreateCustomer)
+                sweetalert('Login Sucessful', 'success', moveToCreateCustomer)
             }).catch((error) => {
                 setIsLoading(false)
                 sweetalert('Credentials are Wrong', 'error')
@@ -43,6 +43,7 @@ const Login = () => {
             {
                 (formik) => <Form className='form'>
                     {isLoading && <Loader />}
+                    
                     <h1 className='text-center mt-2'>Login</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
 

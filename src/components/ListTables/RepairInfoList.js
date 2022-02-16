@@ -5,7 +5,7 @@ import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader'
 import { FaTrashAlt,FaEdit } from "react-icons/fa";
 import Modal from 'react-modal'
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import EditRepairInfo from '../EditRepairInfo/EditRepairInfo';
 
 const RepairInfoList = () => {
@@ -64,6 +64,12 @@ const RepairInfoList = () => {
              <EditRepairInfo repairInfo={editableRepairInfo} removeModal={removeModal}/>      
              </div>
          </Modal>
+         <div className='text-end'>
+         <Link to='/repair-info'>
+         <button className="btn btn-success">Add Repair Info</button>
+
+         </Link>
+         </div>
         <table className="table overlay">
         {isLoading && <Loader />}
             <thead className="thead-dark">

@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import axios from 'axios';
 import { DeviceInfo } from '../utils/urls';
 import sweetalert from '../../SweetAlert';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 
 const CustomerDeviceInfo = () => {
@@ -97,7 +97,14 @@ const CustomerDeviceInfo = () => {
                             <div className='error-text'>{formik.touched.password && formik.errors.password && <span className='error-inner-text'>{formik.errors.password}</span>}</div>
                         </div>
 
-                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary' type="submit" >Submit</button>
+                        <div className="d-flex ">
+
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-success me-5' type="submit" >Submit </button>
+                            
+                            <Link to='/repair-info-table'>
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary ms-5'  >Cancel </button>
+                        </Link>
+                        </div>
                     </div>
 
 

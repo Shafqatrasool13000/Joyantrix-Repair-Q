@@ -21,7 +21,7 @@ function App() {
   const history = useHistory();
   const location=useLocation()
   useEffect(() => {
-    JSON.parse(window.localStorage.getItem('user')) !== null ? history.push('/create-customer') : history.push('/homepage');
+    JSON.parse(window.localStorage.getItem('user')) !== null ? history.push('/customers-table') : history.push('/homepage');
   }, [])
 
   return (
@@ -39,18 +39,22 @@ function App() {
         <Route path="/customers-table">
           <CustomerList />
         </Route>
-        <Route path="/device-table">
-          <DevicesList />
-        </Route>
-        <Route path="/repair-info-table">
-          <RepairInfoList />
-        </Route>
         <Route path="/device-info">
           <CustomerDeviceInfo />
+        </Route>
+        <Route path="/device-table">
+          <DevicesList />
         </Route>
         <Route path="/repair-info">
           <RepairInfo />
         </Route>
+        <Route path="/repair-info-table">
+          <RepairInfoList />
+        </Route>
+        
+        
+        
+        
         <Route path="/homepage">
           <DummyHomepage />
         </Route>

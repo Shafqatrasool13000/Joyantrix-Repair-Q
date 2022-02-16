@@ -7,6 +7,7 @@ import { FaTrashAlt,FaEdit } from "react-icons/fa";
 import Modal from 'react-modal'
 import EditCustomer from '../EditCustomer/EditCustomer';
 import { useHistory } from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
 const CustomerList = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -67,6 +68,12 @@ const CustomerList = () => {
              
              </div>
          </Modal>
+         <div className='text-end'>
+         <Link to='/create-customer'>
+         <button className="btn btn-success">Add Customer</button>
+
+         </Link>
+         </div>
         <table className="table overlay">
             <thead className="thead-dark">
                 <tr>

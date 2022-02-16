@@ -20,7 +20,7 @@ const DummyNavbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0 nav-style">
-            <li className="nav-item me-5">
+            {/* <li className="nav-item me-5">
               <a href='#' className="nav-link active" aria-current="page">Home</a>
             </li>
             <li href='#' className="nav-item me-5">
@@ -28,13 +28,13 @@ const DummyNavbar = () => {
             </li>
             <li href='#' className="nav-item">
               <a className="nav-link active" aria-current="page" >Contact Us</a>
-            </li>
+            </li> */}
           </ul>
           <Link to='/login'>
             <button className="btn btn-success me-3" type="submit">Login</button>
           </Link>
           <Link >
-            <button className="btn btn-danger me-2" type="submit">Register</button>
+            {/* <button className="btn btn-danger me-2" type="submit">Register</button> */}
           </Link>
 
 

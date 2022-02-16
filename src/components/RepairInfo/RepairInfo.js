@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import * as Yup from 'yup'
 import axios from 'axios';
 import { repairInfo } from '../utils/urls';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader';
 
@@ -159,7 +159,14 @@ const RepairInfo = () => {
 
                         </div>
 
-                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary' type="submit" >Submit</button>
+                        <div className="d-flex ">
+
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-success me-5' type="submit" >Submit </button>
+                            
+                            <Link to='/repair-info-table'>
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary ms-5'  >Cancel </button>
+                        </Link>
+                        </div>
                     </div>
 
 
