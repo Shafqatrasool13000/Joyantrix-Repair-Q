@@ -1,80 +1,68 @@
 #footer-main {
-  color: #ffffff;
-  font-family: Open Sans;
-  font-style: normal;
   background: #142d52;
-  margin-top: 74px;
-  padding:74px 30px 30px;
+  margin-top: 4rem;
+  padding: 1.5rem 3.1rem;
 }
 .footer-inner {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  column-gap: 2rem;
-  align-items: center;
   font-weight: 400;
- 
+  color: #ffffff;
+  padding: 0 1.2rem;
 }
 
 .footer-inner .section-1 .description {
-  font-size: 12px;
-  line-height: 21px;
+  font-size: 0.75rem;
+  line-height: 1.3rem;
   letter-spacing: 0em;
 }
 .footer-inner .section-1 .copyright {
-  font-size: 12px;
-  margin-top: 20px;
+  font-size: 0.75rem;
+  margin-top: 1.2rem;
   font-weight: 400;
-  line-height: 21px;
+  line-height: 1.2rem;
   letter-spacing: 0em;
   color: rgba(6, 191, 151, 1);
 }
 
 .footer-inner .section-2,
 .footer-inner .section-3 {
-  display: flex;
-  flex-direction: column;
-  row-gap: 15px;
-  list-style: none;
   
+  list-style: none;
 }
-
-a {
-  font-size: 14px;
+.footer-links{
+  padding-left: 0;
+}
+.footer-links a {
+  font-size: 0.8rem  !important;
   text-decoration: none;
-  color: #ffffff;
+  color: #ffffff !important;
+  line-height: 2rem;
 }
 .footer-inner .section-4 {
   align-self: center;
-  
 }
 .footer-inner .section-4 .footer-icons {
   display: flex;
-  column-gap: 24px;
+  column-gap: 1.5rem;
 }
 .footer-inner .section-4 .subscribe {
-  display: flex;
-  column-gap: 34px;
-  font-family: Rubik;
-  font-size: 10px;
+  
+  font-size: 0.6rem;
   font-weight: 300;
-  line-height: 16px;
+  line-height: 1rem;
   letter-spacing: 0em;
-  margin-top: 12px;
+  margin-top: 0.75rem;
 }
-
 
 .position {
-  height: 39px;
+  height: 2.4rem;
   border-radius: 5px;
   position: relative;
-  
 }
 .position input {
-  width: 100%;
   padding: 0 4px;
 }
 .email-input {
-  height: 39px;
+  height: 2.4rem;
   width: 100%;
 }
 .snd-img {
@@ -83,30 +71,12 @@ a {
   top: 3px;
   cursor: pointer;
 }
-@media only screen and (max-width: 991px) {
-  .footer-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-}
 
-
-@media only screen and (max-width: 710px) {
-  .footer-inner {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 10px;
+@media screen and (max-width:480px) {
+  .footer-links a {
+    font-size: 0.8rem  !important;
+    text-decoration: none;
+    color: #ffffff !important;
+    line-height: 3rem;
   }
-}
-@media only screen and (max-width: 420px) {
-  
-  #footer-main .section-1 .description {
-    font-size: 12px;
-    line-height: 21px;
-  }
-  #footer-main .footer-inner .section-1 .copyright {
-    font-size: 12px;
-    line-height: 21px;
-  }
-
 }

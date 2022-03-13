@@ -8,46 +8,38 @@ import sweetalert from '../../SweetAlert';
 import Loader from '../Loader/Loader';
 
 
-
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false)
-
     const history = useHistory();
     const validate = Yup.object({
         email: Yup.string().email('Invalid Email').required('Email Required'), password: Yup.string().required('Password Required'),
-
     })
     const moveToCreateCustomer = () => {
         history.push('/customers-table')
     }
     return (
-
         <Formik validateOnMount initialValues={{
             email: '',
             password: ''
-
         }} onSubmit={async (values) => {
             setIsLoading(true)
             await axios.post(`${process.env.REACT_APP_BASE_URL}${login}`, values).then((response) => {
                 setIsLoading(false)
-                window.localStorage.setItem('user',JSON.stringify(response.data));
+                window.localStorage.setItem('user', JSON.stringify(response.data));
                 sweetalert('Login Sucessful', 'success', moveToCreateCustomer)
             }).catch((error) => {
                 setIsLoading(false)
                 sweetalert('Credentials are Wrong', 'error')
             });
-
         }
         }
             validationSchema={validate}>
             {
                 (formik) => <Form className='form'>
                     {isLoading && <Loader />}
-                    
-                    <h1 className='text-center mt-2'>Login</h1>
+
+                    <h1 className='text-center mt-3'>Login</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
-
-
                         <div className="col-12 col-sm-5">
                             <div className='form-field' >
 
@@ -72,7 +64,7 @@ const Login = () => {
                             </div>
                             <div className='error-text'>{formik.touched.password && formik.errors.password && <span className='error-inner-text'>{formik.errors.password}</span>}</div>
                         </div>
-                        <button disabled={isLoading?true:false} className='  mt-3 fs-5 px-5 btn btn-success' type="submit" >Login </button>
+                        <button disabled={isLoading ? true : false} className='  mt-3 fs-5 px-5 btn btn-success' type="submit" >Login </button>
                     </div>
 
 

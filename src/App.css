@@ -1,9 +1,5 @@
-.form-label{
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-}
-.btn-primary{
-  font-family: 'Roboto', sans-serif;
+.nav-style li Link{
+  font-weight: 900;
 }
 .error-text{
   margin-top: 10px;
@@ -11,13 +7,6 @@
 .error-text>span{
   color: red;
 }
-h1{
-  font-weight: 700;
-}
-.nav-style li Link{
-  font-weight: 900;
-}
-
 .form{
   position: relative;
   top: 0;

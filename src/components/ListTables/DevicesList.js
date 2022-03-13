@@ -58,8 +58,8 @@ const DevicesList = () => {
     return <div className='container form mt-3'>
         {isLoading && <Loader />}
         <Modal appElement={document.getElementById('app')} shouldCloseOnEsc isOpen={isModalOpen}  shouldCloseOnOverlayClick onRequestClose={()=>setIsModalOpen(false)} style={
-             {overlay:{backgroundColor:"grey"},
-            content:{color:"orange"}}      
+             {
+            content:{color:"orange",background: " linear-gradient(to right, #870000, #190a05)"}}      
          }>
              <div className='d-flex flex-column align-items-center'>
 

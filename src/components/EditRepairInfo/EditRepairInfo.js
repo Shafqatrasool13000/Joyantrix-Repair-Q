@@ -57,7 +57,7 @@ const EditRepairInfo = ({ repairInfo, removeModal }) => {
             {
                 (formik) => <Form className='form'>
                     {isLoading && <Loader />}
-                    <h1 className='text-center mt-2'>Repair Info</h1>
+                    <h1 className='text-center mt-3'>Repair Info</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3 justify-content-center gap-3 create-customer-main mx-2">
                         <div className="col-12 col-sm-5  ">
                             <label htmlFor="exampleInputEmail1" className="form-label">Type of Repair</label>
@@ -106,7 +106,7 @@ const EditRepairInfo = ({ repairInfo, removeModal }) => {
                         <div className="col-12 col-sm-5 ">
                             <div className='form-field' >
                                 <label htmlFor="exampleInputEmail1" className="form-label">Tracking type</label>
-                                <input type="number" name='trackingType' placeholder='Enter Tracking Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                <input type="text" name='trackingType' placeholder='Enter Tracking Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     value={formik.values.trackingType}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
@@ -131,7 +131,7 @@ const EditRepairInfo = ({ repairInfo, removeModal }) => {
                         <div className="col-12 col-sm-5 ">
                             <div className='form-field' >
                                 <label htmlFor="exampleInputEmail1" className="form-label">Tracking Number</label>
-                                <input type="number" name='trackingNumber' placeholder='Enter Tracking Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                <input type="text" name='trackingNumber' placeholder='Enter Tracking Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     value={formik.values.trackingNumber}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}

@@ -4,8 +4,8 @@ const TestWithUs = () => {
     return (
         
         <div id='test-with-us-main'>
-            <p className='skill'> Make the most of your skill set.</p>
-            <p className='my-title'>Create a test with us today.</p>
+          
+            <p className='my-title'>Talk to Us Below</p>
             <button className='btn'>Talk to us</button>
         </div>
         

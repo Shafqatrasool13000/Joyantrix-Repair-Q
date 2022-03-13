@@ -57,8 +57,8 @@ const RepairInfoList = () => {
     return <div className='container form mt-3'>
       
         <Modal shouldCloseOnEsc isOpen={isModalOpen}  shouldCloseOnOverlayClick onRequestClose={()=>setIsModalOpen(false)} appElement={document.getElementById('app')} style={
-             {overlay:{backgroundColor:"grey"},
-            content:{color:"orange"}}      
+             {
+            content:{color:"orange",background: " linear-gradient(to right, #870000, #190a05)"}}      
          }>
              <div className='d-flex flex-column align-items-center'>
              <EditRepairInfo repairInfo={editableRepairInfo} removeModal={removeModal}/>      

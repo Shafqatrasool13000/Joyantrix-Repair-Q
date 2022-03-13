@@ -42,7 +42,7 @@ const EditDevice = ({deviceInfo,removeModal}) => {
             validationSchema={validate}>
             {
                 (formik) => <Form className='form'>
-                    <h1 className='text-center mt-2'>Device Info</h1>
+                    <h1 className='text-center mt-3'>Device Info</h1>
                     {isLoading&&<Loader/>}
                     <div className="d-flex align-items-center overlay flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
 
@@ -75,7 +75,7 @@ const EditDevice = ({deviceInfo,removeModal}) => {
                             <div className='form-field' >
 
                                 <label htmlFor="exampleInputEmail1" className="form-label">Serial Number</label>
-                                <input type="number" name='serialNumber' placeholder='Enter Serial Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                <input type="text" name='serialNumber' placeholder='Enter Serial Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     value={formik.values.serialNumber}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}

@@ -1,113 +1,30 @@
 #advanced-guide {
-  margin: 128px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 30px;
-  width: 100%;
-  gap: 7.2rem;
-
+  margin: 5.6rem 0px;
 }
-#advanced-guide .column{
-   display: flex;
-  flex-direction: column;
-  flex: 1;}
-.guide-text-area{
-  font-style: normal;
-  font-family: Open Sans;
 
-}
-#advanced-guide .mini-title{
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 22px;
-    letter-spacing: 0em;
-    color: #06BF97;    
+#advanced-guide .mini-title {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 0.7rem;
+  letter-spacing: 0em;
+  color: #06bf97;
 }
 #advanced-guide .title {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
-  line-height: 52px;
+  line-height: 3.2rem;
   letter-spacing: 0em;
-  height: 88px;
-  color: #142D52;
-
+  color: #142d52;
 }
-.guide-text-area .p-1,.guide-text-area .p-2 {
-  font-size: 16px;
+.guide-text-area .p-1,
+.guide-text-area .p-2 {
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 27px;
- 
+  line-height: 1.7rem;
 }
 
-#advanced-guide .advanced-img img{
-  height: 420px;
-  width: 100%;
-}
-
-@media only screen and (max-width: 991px){
-  #advanced-guide {
-    flex-direction: column !important; 
-  }
-  #advanced-guide {
-    gap: 0rem;
-    margin: 80px 0px;
-  }
-}
-@media only screen and (max-width: 768px)  {
-  #advanced-guide .advanced-img{
-    margin-left: 0px;
-  }
-  #advanced-guide .mini-title{
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 14px; 
-  }
-  #advanced-guide .title {
-    font-size: 25px;
-    line-height: 32px;
-    height: 68px;
-  }
-  #advanced-guide .description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
-    height: 170px;
-    width: auto;
-  }
-  #advanced-guide .advanced-img  {
-    width: 351.47px;
-    height: 220.14px;
-    margin-top: 30px;
-  }
-
-}
-
-@media only screen and (max-width: 420px)  {
-  #advanced-guide .advanced-img{
-    margin-left: 0px;
-  }
-  #advanced-guide{
-    text-align: center;
-  }
-  #advanced-guide .mini-title{
-      font-size: 10px;
-      line-height: 8px;
-  }
-  #advanced-guide .title {
-    font-size: 20px;
-    line-height: 22px;
-    
-  
-  }
-  #advanced-guide .description {
-   
-    font-size: 15px;
-    line-height: 17px;
-    height: 100px;
-    
-  }
-  #advanced-guide .advanced-img {
-    padding: 20px;
-  }
+#advanced-guide .advanced-img img {
+  border-radius: 0.6rem;
+  height: 100%;
+  object-fit: cover;
 }

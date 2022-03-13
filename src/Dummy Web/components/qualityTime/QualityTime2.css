@@ -1,84 +1,24 @@
 #quality-main2 {
-  margin-top: 87.66px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 30px;
-  gap: 7.2rem;
-}
-
-#quality-main2 .column {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  margin-top: 3.7rem;
 }
 
 #quality-main2 .img-side img {
-height: 452px;
-  
+  border-radius: 0.6rem;
+  height: 100%;
+  object-fit: cover;
 }
-#quality-main2 .text-section {
-  font-family: Open Sans;
-  font-style: normal;
-}
+
 #quality-main2 .text-section .title {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
-  line-height: 52px;
+  line-height: 3.2rem;
   letter-spacing: 0em;
   text-align: left;
   color: #142d52;
 }
 #quality-main2 .text-section .description {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 27px;
+  line-height: 1.7rem;
   letter-spacing: 0em;
-  text-align: left;
-}
-
-@media only screen and (max-width: 991px) {
-  #quality-main2 {
-    flex-direction: column !important;
-  }
-  #quality-main2 {
-    gap: 4rem;
-  }
-}
-@media only screen and (max-width: 768px) {
-  #quality-main2 {
-    margin-top: 17.66px;
-  }
-
-  #quality-main2 .text-section .title {
-    font-size: 30px;
-    line-height: 52px;
-  }
-  #quality-main2 .text-section .description {
-    font-size: 15px;
-    line-height: 27px;
-  }
-  #quality-main2 .img-side img {
-    height: 352px;
-      
-    }
-}
-
-@media only screen and (max-width: 480px) {
- 
-  #quality-main2 .img-side img {
-    height: 252px; 
-    }
- 
-  #quality-main2 .text-section .title {
-    font-size: 18px;
-    line-height: 52px;
-    margin-top: 10px;
-  }
-  #quality-main2 .text-section .description {
-    font-size: 13px;
-    line-height: 27px;
-  }
 }

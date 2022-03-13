@@ -26,6 +26,7 @@ const CustomerDeviceInfo = () => {
             model: '',
             serialNumber: '',
             password: '',
+            price:''
 
         }} onSubmit={ (values) => {
             setIsLoading(true)
@@ -44,7 +45,7 @@ const CustomerDeviceInfo = () => {
             {
                 (formik) => <Form className='form'>
                     {isLoading&&<Loader/>}
-                    <h1 className='text-center mt-2'>Device Info</h1>
+                    <h1 className='text-center mt-3'>Device Info</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3   justify-content-center gap-3 create-customer-main mx-2">
 
                         <div className="col-12 col-sm-5 ">
@@ -76,7 +77,7 @@ const CustomerDeviceInfo = () => {
                             <div className='form-field' >
 
                                 <label htmlFor="exampleInputEmail1" className="form-label">Serial Number</label>
-                                <input type="number" name='serialNumber' placeholder='Enter Serial Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                <input type="text" name='serialNumber' placeholder='Enter Serial Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     value={formik.values.serialNumber}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
@@ -96,10 +97,11 @@ const CustomerDeviceInfo = () => {
                             </div>
                             <div className='error-text'>{formik.touched.password && formik.errors.password && <span className='error-inner-text'>{formik.errors.password}</span>}</div>
                         </div>
+                       
 
                         <div className="d-flex ">
 
-                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-success me-5' type="submit" >Submit </button>
+                        <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-success me-3' type="submit" >Submit </button>
                             
                             <Link to='/repair-info-table'>
                         <button disabled={isLoading?true:false} className='mt-3 px-5 btn btn-primary ms-5'  >Cancel </button>

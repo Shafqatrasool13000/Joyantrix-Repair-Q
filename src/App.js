@@ -16,18 +16,19 @@ import Loginpage from './components/Login/LogingInPage';
 import CustomerList from './components/ListTables/CustomerList';
 import DevicesList from './components/ListTables/DevicesList';
 import RepairInfoList from './components/ListTables/RepairInfoList';
+import Signature from './components/Signature';
 
 function App() {
   const history = useHistory();
-  const location=useLocation()
+  const location = useLocation()
   useEffect(() => {
     JSON.parse(window.localStorage.getItem('user')) !== null ? history.push('/customers-table') : history.push('/homepage');
   }, [])
 
   return (
     <>
-       {location.pathname==='/homepage'||location.pathname==='/login'?null
-      :<Navbar />
+      {location.pathname === '/homepage' || location.pathname === '/login' ? null
+        : <Navbar />
       }
       <Switch>
         <Route exact path="/login">
@@ -51,19 +52,14 @@ function App() {
         <Route path="/repair-info-table">
           <RepairInfoList />
         </Route>
-        
-        
-        
-        
         <Route path="/homepage">
           <DummyHomepage />
         </Route>
       </Switch>
-      {location.pathname==='/homepage'||location.pathname==='/login'?null
-      :<Footer />
-    }
-  
-      
+      {location.pathname === '/homepage' || location.pathname === '/login' ? null
+        : <Footer />
+      }
+
     </>
   );
 }

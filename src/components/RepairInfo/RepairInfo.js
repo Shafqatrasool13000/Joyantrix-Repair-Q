@@ -19,16 +19,17 @@ const RepairInfo = () => {
         history.push('/repair-info-table');
     }
     const dropdownOptions = [
-        { key: 'Select an option', value: '' },
+        { key: 'Select Tracking', value: '' },
         { key: 'New Ordered', value: '1' },
         { key: 'Transit', value: '2' },
         { key: 'Delivered', value: '3' }
     ]
-    // const radioOptions = [
-    //     { key: 'Walk in', value: 'rOption1' },
-    //     { key: 'Special Order', value: 'rOption2' },
-    //     { key: 'Diagnostic', value: 'rOption3' }
-    // ]
+    const trackingOptions = [
+        { key: 'Select Status', value: '' },
+        { key: 'Walk in', value: 'rOption1' },
+        { key: 'Special Order', value: 'rOption2' },
+        { key: 'Diagnostic', value: 'rOption3' }
+    ]
     // const checkboxOptions = [
     //     { key: 'Option 1', value: 'cOption1' },
     //     { key: 'Option 2', value: 'cOption2' },
@@ -41,7 +42,7 @@ const RepairInfo = () => {
         appointmentTime: Yup.date()
             .required('Required')
             .nullable(),
-        trackingType: Yup.string().required('Tracking type Required'),
+        tracking: Yup.string().required('Tracking  Required'),
         status: Yup.string().required('Status Required'),
         trackingNumber: Yup.string().required('Tracking Number Required'),
     })
@@ -51,7 +52,7 @@ const RepairInfo = () => {
             typeOfRepair: '',
             estimatedCost: '',
             appointmentTime: '',
-            trackingType: '',
+            tracking: '',
             status: '',
             trackingNumber: ''
 
@@ -75,7 +76,7 @@ const RepairInfo = () => {
             {
                 (formik) => <Form className='form'>
                     {isLoading&&<Loader/>}
-                    <h1 className='text-center mt-2'>Repair Info</h1>
+                    <h1 className='text-center mt-3'>Repair Info</h1>
                     <div className="d-flex align-items-center overlay flex-column mt-3 justify-content-center gap-3 create-customer-main mx-2">
                         <div className="col-12 col-sm-5  ">
                             <label htmlFor="exampleInputEmail1" className="form-label">Type of Repair</label>
@@ -121,16 +122,19 @@ const RepairInfo = () => {
                             </Field>
                             <div className='error-text'>{formik.touched.appointmentTime && formik.errors.appointmentTime && <span className='error-inner-text'>{formik.errors.appointmentTime}</span>}</div>
                         </div>
-                        <div className="col-12 col-sm-5 ">
-                            <div className='form-field' >
-                                <label htmlFor="exampleInputEmail1" className="form-label">Tracking type</label>
-                                <input type="number" name='trackingType' placeholder='Enter Tracking Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value={formik.values.trackingType}
-                                    onBlur={formik.handleBlur}
-                                    onChange={formik.handleChange}
-                                />
-                            </div>
-                            <div className='error-text'>{formik.touched.trackingType && formik.errors.trackingType && <span className='error-inner-text'>{formik.errors.trackingType}</span>}</div>
+                        <div className='col-12 col-sm-5 '>
+                            <label htmlFor="exampleInputEmail1" className="form-label">Tracking</label>
+                            <br />
+                            <Field as='select' name="tracking" >
+                                {trackingOptions.map(option => {
+                                    return (
+                                        <option key={option.value} value={option.value}>
+                                            {option.key}
+                                        </option>
+                                    )
+                                })}
+                            </Field>
+                            <div className='error-text'>{formik.touched.tracking && formik.errors.tracking && <span className='error-inner-text'>{formik.errors.tracking}</span>}</div>
                         </div>
                         <div className='col-12 col-sm-5 '>
                             <label htmlFor="exampleInputEmail1" className="form-label">Status</label>
@@ -149,7 +153,7 @@ const RepairInfo = () => {
                         <div className="col-12 col-sm-5 ">
                             <div className='form-field' >
                                 <label htmlFor="exampleInputEmail1" className="form-label">Tracking Number</label>
-                                <input type="number" name='trackingNumber' placeholder='Enter Tracking Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                <input type="text" name='trackingNumber' placeholder='Enter Tracking Number' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     value={formik.values.trackingNumber}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
